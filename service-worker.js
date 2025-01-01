@@ -37,3 +37,36 @@ self.addEventListener('fetch', (event) => {
         })
     );
 });
+
+self.addEventListener('sync', (event) => {
+    if (event.tag === 'sync-tasks') {
+        event.waitUntil(syncTasks());
+    }
+});
+
+function syncTasks() {
+    // Logic to sync tasks with the server
+    return fetch('/sync-tasks', {
+        method: 'POST',
+        body: JSON.stringify({ tasks: getTasksFromLocalStorage() }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+}
+
+self.addEventListener('push', (event) => {
+    const data = event.data.json();
+    const options = {
+        body: data.body,
+        icon: 'icon-192x192.png',
+        badge: 'icon-192x192.png'
+    };
+    event.waitUntil(
+        self.registration.showNotification(data.title, options)
+    );
+});
+
+function getTasksFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('tasks')) || [];
+}

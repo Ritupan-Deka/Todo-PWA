@@ -132,3 +132,36 @@ if ('serviceWorker' in navigator) {
         console.error('Service Worker registration failed:', error);
     });
 }
+
+if ('serviceWorker' in navigator && 'SyncManager' in window) {
+    navigator.serviceWorker.ready.then((swRegistration) => {
+        return swRegistration.sync.register('sync-tasks');
+    }).catch((error) => {
+        console.error('Background sync registration failed:', error);
+    });
+}
+
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+    navigator.serviceWorker.ready.then((swRegistration) => {
+        return swRegistration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array('<Your-VAPID-Public-Key>')
+        });
+    }).then((subscription) => {
+        console.log('Push subscription:', subscription);
+        // Send subscription to the server
+    }).catch((error) => {
+        console.error('Push subscription failed:', error);
+    });
+}
+
+function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
