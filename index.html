@@ -19,23 +19,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWA To-Do List</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header>
+    <header role="banner">
         <h1>🎯 Gamified To-Do List</h1>
         <p>Level up as you complete tasks!</p>
         <p><strong>Points:</strong> <span id="points">0</span> | <strong>Level:</strong> <span id="level">1</span></p>
+        <button id="toggle-dark-mode" aria-label="Toggle dark mode">
+            <img src="images/dark-light.png" alt="Toggle dark mode" width="24" height="24">
+        </button>
     </header>
-    <main>
+    <main role="main">
         <div class="task-input">
-            <input type="text" id="task-input" placeholder="Add a new task...">
-            <button id="add-task">Add Task</button>
+            <input type="text" id="task-input" placeholder="Add a new task..." aria-label="New task">
+            <button id="add-task" aria-label="Add task">Add Task</button>
         </div>
-        <ul id="task-list"></ul>
+        <ul id="task-list" role="list"></ul>
     </main>
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

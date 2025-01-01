@@ -1,20 +1,41 @@
 /* styles.css */
+:root {
+    --background-color: #f9f9f9;
+    --text-color: #2c3e50;
+    --header-background: #3498db;
+    --header-text-color: #ffffff;
+    --input-background: #ffffff;
+    --input-border: #bdc3c7;
+    --input-text-color: #2c3e50;
+    --button-background: #3498db;
+    --button-text-color: #ffffff;
+    --button-hover-background: #2980b9;
+    --task-background: #ffffff;
+    --task-border: #bdc3c7;
+    --task-completed-text-color: #95a5a6;
+    --delete-button-background: #e74c3c;
+    --delete-button-hover-background: #c0392b;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background: #f7f8fc;
+    background: var(--background-color);
+    color: var(--text-color);
 }
 
 header {
-    background: #4caf50;
-    color: white;
-    padding: 10px 0;
+    background: var(--header-background);
+    color: var(--header-text-color);
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     margin: 0;
+    font-size: 2em;
 }
 
 .task-input {
@@ -25,19 +46,32 @@ input {
     padding: 10px;
     width: 70%;
     font-size: 16px;
+    background: var(--input-background);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    color: var(--input-text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button {
     padding: 10px;
     font-size: 16px;
-    background: #4caf50;
-    color: white;
+    background: var(--button-background);
+    color: var(--button-text-color);
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background: #45a049;
+    background: var(--button-hover-background);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 ul {
@@ -49,19 +83,64 @@ li {
     padding: 10px;
     margin: 10px auto;
     width: 80%;
-    background: white;
-    border: 1px solid #ddd;
+    background: var(--task-background);
+    border: 1px solid var(--task-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 li.completed {
     text-decoration: line-through;
-    color: #888;
+    color: var(--task-completed-text-color);
 }
 
 li button {
-    background: red;
+    background: var(--delete-button-background);
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+li button:hover {
+    background: var(--delete-button-hover-background);
+}
+
+@media (max-width: 600px) {
+    input {
+        width: 100%;
+    }
+
+    li {
+        width: 100%;
+    }
+}
+
+button:focus, input:focus {
+    outline: 2px solid var(--header-background);
+    outline-offset: 2px;
+}
+
+body.dark-mode {
+    --background-color: #2d3436;
+    --text-color: #dfe6e9;
+    --header-background: #1e272e;
+    --header-text-color: #dfe6e9;
+    --input-background: #3a3a3a;
+    --input-border: #555555;
+    --input-text-color: #dfe6e9;
+    --button-background: #1e271e;
+    --button-text-color: #dfe6e9;
+    --button-hover-background: #444444;
+    --task-background: #1e272e;
+    --task-border: #3a3a3a;
+    --task-completed-text-color: #888888;
+    --delete-button-background: #e57373;
+    --delete-button-hover-background: #ef5350;
 }
