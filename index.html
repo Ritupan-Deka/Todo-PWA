@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Set theme color for mobile browser UI -->
+    <meta name="theme-color" content="#4caf50">
+
+    <!-- Apple-specific meta tags to control status bar and home screen behavior -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Makes the status bar background transparent -->
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Makes the app capable of full-screen mode -->
+
+    <!-- Android-specific meta tag -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Tells Android to run in full-screen mode without browser UI -->
+
+    <!-- Set the icon for mobile platforms -->
+    <link rel="icon" href="icon-192x192.png" sizes="192x192">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA To-Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>🎯 Gamified To-Do List</h1>
+        <p>Level up as you complete tasks!</p>
+        <p><strong>Points:</strong> <span id="points">0</span> | <strong>Level:</strong> <span id="level">1</span></p>
+    </header>
+    <main>
+        <div class="task-input">
+            <input type="text" id="task-input" placeholder="Add a new task...">
+            <button id="add-task">Add Task</button>
+        </div>
+        <ul id="task-list"></ul>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
